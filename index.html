@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Transformation Journey</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #0a0a0f;
+    --warm: #faf7f2;
+    --accent-his: #c8f135;
+    --accent-her: #b85c38;
+    --mid: #1a1510;
+    --muted-dark: #6b6b80;
+    --muted-warm: #8a7e6e;
+    --border-dark: #1e1e2a;
+    --border-warm: #e8e0d0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: #e8e8f0;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+  }
+
+  .hero-split {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 60px 52px;
+    min-height: 100vh;
+  }
+
+  .hero-split.his {
+    background: var(--dark);
+  }
+
+  .hero-split.her {
+    background: #2a1e14;
+  }
+
+  .hero-split.his::before {
+    content: 'HIS';
+    position: absolute;
+    top: -20px; left: -10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 280px;
+    color: rgba(200,241,53,0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-split.her::before {
+    content: 'HERS';
+    position: absolute;
+    top: -20px; right: -20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 240px;
+    font-weight: 700;
+    color: rgba(184,92,56,0.06);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Divider line */
+  .hero::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    bottom: 10%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0.1) 70%, transparent);
+    pointer-events: none;
+  }
+
+  .split-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .split-label.his { color: var(--accent-his); }
+  .split-label.her { color: var(--accent-her); }
+
+  .split-label::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+  }
+
+  .split-label.his::before { background: var(--accent-his); }
+  .split-label.her::before { background: var(--accent-her); }
+
+  .hero-split h1 {
+    line-height: 0.88;
+    margin-bottom: 20px;
+  }
+
+  .hero-split.his h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 7vw, 110px);
+    color: #e8e8f0;
+  }
+
+  .hero-split.his h1 span { color: var(--accent-his); }
+
+  .hero-split.her h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(58px, 6.5vw, 100px);
+    font-weight: 700;
+    color: #faf7f2;
+  }
+
+  .hero-split.her h1 em {
+    font-style: italic;
+    color: var(--accent-her);
+  }
+
+  .hero-sub {
+    font-size: 13.5px;
+    line-height: 1.75;
+    max-width: 380px;
+    margin-bottom: 36px;
+  }
+
+  .hero-split.his .hero-sub { color: var(--muted-dark); }
+  .hero-split.her .hero-sub { color: rgba(250,247,242,0.5); font-weight: 300; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    width: fit-content;
+  }
+
+  .cta-btn.his {
+    background: var(--accent-his);
+    color: var(--dark);
+  }
+
+  .cta-btn.his:hover {
+    background: #d4f748;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200,241,53,0.25);
+  }
+
+  .cta-btn.her {
+    background: var(--accent-her);
+    color: var(--warm);
+  }
+
+  .cta-btn.her:hover {
+    background: #c96840;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(184,92,56,0.3);
+  }
+
+  .cta-btn .arrow { font-size: 16px; transition: transform 0.2s; }
+  .cta-btn:hover .arrow { transform: translateX(4px); }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    animation: bounce 2s ease-in-out infinite;
+    z-index: 10;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  .scroll-hint::after {
+    content: '↓';
+    font-size: 18px;
+    color: rgba(255,255,255,0.15);
+  }
+
+  /* ─── STATS BANNER ─── */
+  .stats-banner {
+    background: #111118;
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+    padding: 28px 48px;
+    display: flex;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  .stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 0 24px;
+    border-right: 1px solid var(--border-dark);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-item .s-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .stat-item .s-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted-dark);
+  }
+
+  .stat-item:nth-child(1) .s-num { color: var(--accent-his); }
+  .stat-item:nth-child(2) .s-num { color: var(--accent-her); }
+  .stat-item:nth-child(3) .s-num { color: rgba(255,255,255,0.6); }
+  .stat-item:nth-child(4) .s-num { color: rgba(255,255,255,0.6); }
+
+  /* ─── ABOUT SECTION ─── */
+  .about {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 32px;
+    text-align: center;
+  }
+
+  .section-eyebrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted-dark);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--border-dark);
+  }
+
+  .about h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 6vw, 80px);
+    line-height: 1;
+    margin-bottom: 28px;
+    color: #e8e8f0;
+  }
+
+  .about h2 .italic-serif {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--accent-her);
+  }
+
+  .about p {
+    font-size: 15px;
+    color: var(--muted-dark);
+    line-height: 1.85;
+    max-width: 620px;
+    margin: 0 auto 48px;
+  }
+
+  /* ─── PROGRAM CARDS ─── */
+  .programs {
+    padding: 0 32px 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .program-card {
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s;
+    position: relative;
+  }
+
+  .program-card:hover { transform: translateY(-6px); }
+
+  .program-card.his {
+    background: #0d0d16;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 60px rgba(200,241,53,0.05);
+  }
+
+  .program-card.his:hover {
+    box-shadow: 0 20px 60px rgba(200,241,53,0.1);
+    border-color: rgba(200,241,53,0.2);
+  }
+
+  .program-card.her {
+    background: #1e150d;
+    border: 1px solid rgba(184,92,56,0.15);
+    box-shadow: 0 0 60px rgba(184,92,56,0.05);
+  }
+
+  .program-card.her:hover {
+    box-shadow: 0 20px 60px rgba(184,92,56,0.15);
+    border-color: rgba(184,92,56,0.3);
+  }
+
+  .card-top {
+    padding: 36px 36px 28px;
+    border-bottom: 1px solid;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .program-card.his .card-top { border-bottom-color: var(--border-dark); }
+  .program-card.her .card-top { border-bottom-color: rgba(184,92,56,0.15); }
+
+  .card-bg-letter {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .program-card.his .card-bg-letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 160px;
+    color: rgba(200,241,53,0.04);
+  }
+
+  .program-card.her .card-bg-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 140px;
+    font-weight: 700;
+    color: rgba(184,92,56,0.06);
+  }
+
+  .card-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .program-card.his .card-tag { background: rgba(200,241,53,0.1); color: var(--accent-his); border: 1px solid rgba(200,241,53,0.2); }
+  .program-card.her .card-tag { background: rgba(184,92,56,0.1); color: var(--accent-her); border: 1px solid rgba(184,92,56,0.2); }
+
+  .card-name {
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .program-card.his .card-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    color: #e8e8f0;
+  }
+
+  .program-card.her .card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+    color: #faf7f2;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .program-card.his .card-desc { color: var(--muted-dark); }
+  .program-card.her .card-desc { color: rgba(250,247,242,0.45); font-weight: 300; }
+
+  .card-bottom {
+    padding: 24px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card-stat-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .program-card.his .card-stat { color: var(--muted-dark); }
+  .program-card.her .card-stat { color: rgba(250,247,242,0.4); }
+
+  .card-stat .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .program-card.his .card-stat .dot { background: var(--accent-his); }
+  .program-card.her .card-stat .dot { background: var(--accent-her); }
+
+  .card-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Courier Prime', monospace;
+    transition: all 0.2s;
+  }
+
+  .program-card.his .card-cta { background: rgba(200,241,53,0.08); color: var(--accent-his); border: 1px solid rgba(200,241,53,0.15); }
+  .program-card.his:hover .card-cta { background: var(--accent-his); color: var(--dark); }
+
+  .program-card.her .card-cta { background: rgba(184,92,56,0.08); color: var(--accent-her); border: 1px solid rgba(184,92,56,0.2); }
+  .program-card.her:hover .card-cta { background: var(--accent-her); color: var(--warm); }
+
+  /* ─── WHAT'S INSIDE ─── */
+  .features {
+    background: #0d0d16;
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+    padding: 80px 32px;
+  }
+
+  .features-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border-dark);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 48px;
+  }
+
+  .feature-item {
+    background: #0d0d16;
+    padding: 32px 28px;
+  }
+
+  .feature-item .f-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+  .feature-item .f-title { font-weight: 600; font-size: 15px; margin-bottom: 8px; color: #e8e8f0; }
+  .feature-item .f-desc { font-size: 13px; color: var(--muted-dark); line-height: 1.65; }
+
+  /* ─── TIMELINE STRIP ─── */
+  .journey {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 32px;
+  }
+
+  .journey-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 48px;
+    position: relative;
+  }
+
+  .journey-grid::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 1px;
+    background: linear-gradient(to right, var(--accent-his), var(--accent-her));
+  }
+
+  .journey-step {
+    text-align: center;
+    padding: 0 16px;
+    padding-top: 56px;
+    position: relative;
+  }
+
+  .step-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid var(--dark);
+  }
+
+  .journey-step:nth-child(1) .step-dot { background: var(--accent-his); }
+  .journey-step:nth-child(2) .step-dot { background: #96a835; }
+  .journey-step:nth-child(3) .step-dot { background: #c67c46; }
+  .journey-step:nth-child(4) .step-dot { background: var(--accent-her); }
+
+  .step-time {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted-dark);
+    margin-bottom: 8px;
+  }
+
+  .step-title { font-weight: 600; font-size: 14px; margin-bottom: 6px; color: #e8e8f0; }
+  .step-desc { font-size: 12px; color: var(--muted-dark); line-height: 1.6; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border-dark);
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-logo .his-part { color: var(--accent-his); }
+  .footer-logo .sep { color: var(--border-dark); font-size: 20px; }
+  .footer-logo .her-part {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--accent-her);
+    font-weight: 700;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted-dark);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: #e8e8f0; }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(107,107,128,0.5);
+    font-family: 'Courier Prime', monospace;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-split { min-height: 70vh; padding: 48px 28px; }
+    .hero::after { display: none; }
+    .programs { grid-template-columns: 1fr; padding: 0 20px 60px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .journey-grid { grid-template-columns: 1fr 1fr; }
+    .journey-grid::before { display: none; }
+    .stats-banner { flex-wrap: wrap; padding: 24px 24px; }
+    .stat-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid var(--border-dark); padding: 16px; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ─── FADE-IN ANIMATION ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-split .split-label { animation: fadeUp 0.6s ease both; animation-delay: 0.1s; }
+  .hero-split h1 { animation: fadeUp 0.7s ease both; animation-delay: 0.2s; }
+  .hero-split .hero-sub { animation: fadeUp 0.7s ease both; animation-delay: 0.35s; }
+  .hero-split .cta-btn { animation: fadeUp 0.7s ease both; animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO SPLIT ─── -->
+<section class="hero">
+
+  <!-- HIS SIDE -->
+  <div class="hero-split his">
+    <div class="split-label his">His Journey</div>
+    <h1>BUILD.<br><span>ENDURE.</span><br>GROW.</h1>
+    <p class="hero-sub">172cm &bull; 71kg &bull; 3 days/week. A 2-year science-based program focused on building muscle, arm development, and cardiovascular fitness. Zone Fitness, let's go.</p>
+    <a href="his-program.html" class="cta-btn his">
+      Open My Program
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <!-- HER SIDE -->
+  <div class="hero-split her">
+    <div class="split-label her">Her Journey</div>
+    <h1>Lean.<br><em>Strong.</em><br>Thriving.</h1>
+    <p class="hero-sub">168cm &bull; 115kg &bull; 3 days/week. A PCOS-adapted, lower-back-safe program built for sustainable fat loss, strength, and feeling incredible. This is your year.</p>
+    <a href="her-program.html" class="cta-btn her">
+      Open My Program
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <div class="scroll-hint">scroll</div>
+</section>
+
+<!-- ─── STATS BANNER ─── -->
+<div class="stats-banner">
+  <div class="stat-item">
+    <span class="s-num">24</span>
+    <span class="s-label">Months of Programming</span>
+  </div>
+  <div class="stat-item">
+    <span class="s-num">4</span>
+    <span class="s-label">Phases Each</span>
+  </div>
+  <div class="stat-item">
+    <span class="s-num">3</span>
+    <span class="s-label">Days Per Week</span>
+  </div>
+  <div class="stat-item">
+    <span class="s-num">2</span>
+    <span class="s-label">People. One Journey.</span>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section class="about">
+  <div class="section-eyebrow">The Mission</div>
+  <h2>Two Programs.<br>One <span class="italic-serif">Shared</span> Goal.</h2>
+  <p>You're doing this together. Same gym, same days, same commitment — but programs built specifically for each of you. His is built around muscle building and endurance. Hers is designed around PCOS, lower back health, and sustainable fat loss. Both are grounded in the latest exercise science and built to last two years.</p>
+</section>
+
+<!-- ─── PROGRAM CARDS ─── -->
+<div class="programs">
+
+  <a href="his-program.html" class="program-card his">
+    <div class="card-top">
+      <div class="card-bg-letter">BUILD</div>
+      <div class="card-tag">His Program</div>
+      <div class="card-name">BUILD.<br>ENDURE.<br>GROW.</div>
+      <p class="card-desc">Full-body to Push/Pull/Legs to Upper/Lower. Arm specialisation, concurrent strength and endurance training, and a 2-year progressive overload roadmap.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="card-stat-row">
+        <div class="card-stat"><div class="dot"></div> 4 Phases</div>
+        <div class="card-stat"><div class="dot"></div> Arm Focus</div>
+        <div class="card-stat"><div class="dot"></div> HIIT + Strength</div>
+        <div class="card-stat"><div class="dot"></div> RPE Based</div>
+      </div>
+      <div class="card-cta">
+        View Full Program
+        <span>→</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="her-program.html" class="program-card her">
+    <div class="card-top">
+      <div class="card-bg-letter">Lean</div>
+      <div class="card-tag">Her Program</div>
+      <div class="card-name">Lean.<br><em style="font-style:italic;">Strong.</em><br>Thriving.</div>
+      <p class="card-desc">PCOS-adapted, lower-back-safe, and built around strength training as the primary fat-loss tool. Walking, incline treadmill, and carefully dosed cardio — all science-backed.</p>
+    </div>
+    <div class="card-bottom">
+      <div class="card-stat-row">
+        <div class="card-stat"><div class="dot"></div> PCOS Protocol</div>
+        <div class="card-stat"><div class="dot"></div> Back Safe</div>
+        <div class="card-stat"><div class="dot"></div> Glute Focus</div>
+        <div class="card-stat"><div class="dot"></div> Walk + Lift</div>
+      </div>
+      <div class="card-cta">
+        View Full Program
+        <span>→</span>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+<!-- ─── WHAT'S INSIDE ─── -->
+<section class="features">
+  <div class="features-inner">
+    <div class="section-eyebrow">What's Inside</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);color:#e8e8f0;margin-top:12px;">Everything You Need. Nothing You Don't.</h2>
+
+    <div class="features-grid">
+      <div class="feature-item">
+        <span class="f-icon">📋</span>
+        <div class="f-title">Phased Programs</div>
+        <div class="f-desc">4 progressive phases per person, each building on the last. Beginner-friendly in Phase 1, advanced by Phase 4.</div>
+      </div>
+      <div class="feature-item">
+        <span class="f-icon">🔬</span>
+        <div class="f-title">Science-Based</div>
+        <div class="f-desc">Built on research from Dr. Mike Israetel, Jeff Nippard, Dr. Stacy Sims, Andy Galpin, and Eric Helms.</div>
+      </div>
+      <div class="feature-item">
+        <span class="f-icon">💜</span>
+        <div class="f-title">PCOS Adapted</div>
+        <div class="f-desc">Her program addresses insulin resistance, cortisol management, and hormonal balance — not just calories.</div>
+      </div>
+      <div class="feature-item">
+        <span class="f-icon">🏋️</span>
+        <div class="f-title">Exercise Libraries</div>
+        <div class="f-desc">Every exercise includes coaching notes — how to perform it, what to feel, and what to avoid.</div>
+      </div>
+      <div class="feature-item">
+        <span class="f-icon">🥗</span>
+        <div class="f-title">Nutrition Guides</div>
+        <div class="f-desc">Calorie targets, protein goals, supplement recommendations — all specific to each person's physiology and goals.</div>
+      </div>
+      <div class="feature-item">
+        <span class="f-icon">📈</span>
+        <div class="f-title">Progress Milestones</div>
+        <div class="f-desc">Clear checkpoints every 4 weeks so you always know where you are and what's coming next.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── JOURNEY TIMELINE ─── -->
+<section class="journey">
+  <div class="section-eyebrow">The Road Ahead</div>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);color:#e8e8f0;margin-top:12px;">24 Months. 4 Chapters.</h2>
+  <div class="journey-grid">
+    <div class="journey-step">
+      <div class="step-dot"></div>
+      <div class="step-time">Months 1–3</div>
+      <div class="step-title">Foundation</div>
+      <div class="step-desc">Learn the movements. Build the habit. Rebuild what was lost.</div>
+    </div>
+    <div class="journey-step">
+      <div class="step-dot"></div>
+      <div class="step-time">Months 4–6</div>
+      <div class="step-title">Building Momentum</div>
+      <div class="step-desc">Volume increases. Results start showing. Confidence builds.</div>
+    </div>
+    <div class="journey-step">
+      <div class="step-dot"></div>
+      <div class="step-time">Months 7–12</div>
+      <div class="step-title">Real Change</div>
+      <div class="step-desc">Strength climbs. Body composition shifts visibly. Endurance improves.</div>
+    </div>
+    <div class="journey-step">
+      <div class="step-dot"></div>
+      <div class="step-time">Months 13–24</div>
+      <div class="step-title">Specialisation</div>
+      <div class="step-desc">You're an experienced lifter. Peak physique and fitness. Chase new goals.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">
+    <span class="his-part">HIS</span>
+    <span class="sep">&</span>
+    <span class="her-part">Hers</span>
+  </div>
+  <div class="footer-links">
+    <a href="his-program.html">His Program</a>
+    <a href="her-program.html">Her Program</a>
+  </div>
+  <div class="footer-copy">Zone Fitness // 2026 — 2028</div>
+</footer>
+
+</body>
+</html>

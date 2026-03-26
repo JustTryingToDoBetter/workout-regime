@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2-Year Training Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --surface: #ffffff;
+    --surface2: #f5f0e8;
+    --border: #e8e0d0;
+    --accent: #b85c38;
+    --accent2: #4a7c5e;
+    --accent3: #8b5e83;
+    --text: #2a2218;
+    --muted: #8a7e6e;
+    --gold: #c9973a;
+    --light-accent: #fdf0eb;
+    --light-green: #edf5f0;
+    --light-purple: #f4eef5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--text);
+    padding: 60px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 45%;
+    background: linear-gradient(135deg, #3a2a1a 0%, #5c3520 100%);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .hero::after {
+    content: 'TRANSFORM';
+    position: absolute;
+    bottom: -20px; right: 40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 130px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .hero-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-label::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(54px, 9vw, 108px);
+    font-weight: 700;
+    line-height: 0.88;
+    color: #faf7f2;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(250,247,242,0.55);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .stat-chip {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stat-chip .icon { font-size: 16px; }
+  .stat-chip .label { font-size: 10px; color: rgba(250,247,242,0.4); display: block; letter-spacing: 1px; text-transform: uppercase; }
+  .stat-chip .val { font-family: 'Courier Prime', monospace; font-size: 13px; color: #faf7f2; font-weight: 700; }
+
+  /* ─── PCOS ALERT ─── */
+  .pcos-alert {
+    background: linear-gradient(135deg, var(--light-purple) 0%, #ede3f0 100%);
+    border-left: 4px solid var(--accent3);
+    padding: 20px 28px;
+    margin: 0;
+  }
+
+  .pcos-alert-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .pcos-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+
+  .pcos-alert h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent3);
+    margin-bottom: 6px;
+  }
+
+  .pcos-alert p {
+    font-size: 13px;
+    color: #5a4a5e;
+    line-height: 1.7;
+  }
+
+  .pcos-alert strong { color: var(--accent3); }
+
+  /* ─── PHASE NAV ─── */
+  .phase-nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    background: var(--surface);
+    overflow-x: auto;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(42,34,24,0.06);
+  }
+
+  .phase-nav::-webkit-scrollbar { height: 2px; }
+  .phase-nav::-webkit-scrollbar-thumb { background: var(--accent); }
+
+  .phase-tab {
+    padding: 18px 26px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .phase-tab .p-num { font-size: 9px; opacity: 0.5; }
+  .phase-tab:hover { color: var(--text); }
+  .phase-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ─── CONTENT ─── */
+  .content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 44px 24px 80px;
+  }
+
+  .phase-content { display: none; }
+  .phase-content.active { display: block; }
+
+  /* ─── PHASE HEADER ─── */
+  .phase-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+    margin-bottom: 36px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .phase-badge {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+
+  .phase-badge.p1 { background: var(--light-accent); color: var(--accent); border: 1px solid rgba(184,92,56,0.2); }
+  .phase-badge.p2 { background: var(--light-green); color: var(--accent2); border: 1px solid rgba(74,124,94,0.2); }
+  .phase-badge.p3 { background: #fef8ed; color: var(--gold); border: 1px solid rgba(201,151,58,0.2); }
+  .phase-badge.p4 { background: var(--light-purple); color: var(--accent3); border: 1px solid rgba(139,94,131,0.2); }
+
+  .phase-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .phase-header p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.85;
+    max-width: 560px;
+  }
+
+  .phase-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 150px;
+  }
+
+  .meta-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    text-align: right;
+  }
+
+  .meta-item .m-label { font-size: 9px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-family: 'Courier Prime', monospace; }
+  .meta-item .m-val { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 700; line-height: 1.1; color: var(--accent); }
+
+  /* ─── SCIENCE BOX ─── */
+  .science-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 32px;
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .science-box strong {
+    color: var(--accent2);
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  /* ─── BACK SAFETY ─── */
+  .back-safety {
+    background: #fff9f0;
+    border: 1px solid rgba(201,151,58,0.25);
+    border-left: 3px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    color: #7a6030;
+    line-height: 1.7;
+  }
+
+  .back-safety strong { color: var(--gold); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; display: block; margin-bottom: 6px; font-family: 'Courier Prime', monospace; }
+
+  /* ─── WEEK GRID ─── */
+  .week-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 36px;
+  }
+
+  .day-cell {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 6px;
+    text-align: center;
+  }
+
+  .day-cell .d-name { font-size: 9px; color: var(--muted); display: block; margin-bottom: 6px; font-family: 'Courier Prime', monospace; text-transform: uppercase; letter-spacing: 1px; }
+  .day-cell .d-type { font-size: 10px; font-weight: 700; display: block; }
+
+  .day-cell.train { border-color: var(--accent); background: var(--light-accent); }
+  .day-cell.train .d-type { color: var(--accent); }
+  .day-cell.walk { border-color: var(--accent2); background: var(--light-green); }
+  .day-cell.walk .d-type { color: var(--accent2); }
+  .day-cell.rest .d-type { color: var(--muted); opacity: 0.5; }
+
+  /* ─── WORKOUT CARDS ─── */
+  .workout-grid { display: grid; gap: 22px; margin-bottom: 36px; }
+
+  .workout-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(42,34,24,0.04);
+  }
+
+  .workout-card-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface2);
+  }
+
+  .workout-card-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .focus-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .tag {
+    font-size: 9px;
+    padding: 3px 10px;
+    border-radius: 99px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  .tag.terracotta { background: var(--light-accent); color: var(--accent); border: 1px solid rgba(184,92,56,0.2); }
+  .tag.green { background: var(--light-green); color: var(--accent2); border: 1px solid rgba(74,124,94,0.2); }
+  .tag.purple { background: var(--light-purple); color: var(--accent3); border: 1px solid rgba(139,94,131,0.2); }
+  .tag.gold { background: #fef8ed; color: var(--gold); border: 1px solid rgba(201,151,58,0.2); }
+
+  .exercise-table { width: 100%; border-collapse: collapse; }
+
+  .exercise-table thead tr { background: var(--bg); }
+
+  .exercise-table th {
+    padding: 10px 24px;
+    text-align: left;
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .exercise-table td {
+    padding: 14px 24px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .exercise-table tr:last-child td { border-bottom: none; }
+  .exercise-table tr:hover td { background: var(--bg); }
+
+  .ex-name { font-weight: 600; color: var(--text); }
+  .ex-note { font-size: 11px; color: var(--muted); margin-top: 2px; font-style: italic; }
+
+  .back-safe-note { font-size: 10px; color: var(--gold); margin-top: 3px; font-family: 'Courier Prime', monospace; }
+
+  .sets-badge {
+    font-family: 'Courier Prime', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .rpe-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--surface2);
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .cardio-row {
+    padding: 14px 24px;
+    font-size: 12.5px;
+    color: var(--accent2);
+    background: var(--light-green);
+    border-top: 1px solid var(--border);
+    font-style: italic;
+  }
+
+  /* ─── SECTION TITLE ─── */
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--text);
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── INFO CARDS ─── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .info-card .i-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+  .info-card .i-name { font-weight: 700; font-size: 14px; margin-bottom: 6px; color: var(--text); }
+  .info-card .i-detail { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+
+  /* ─── TIPS ─── */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .tip-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .tip-card .t-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .tip-card .t-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .tip-card .t-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+
+  /* ─── DELOAD BOX ─── */
+  .deload-box {
+    background: #fef8ed;
+    border: 1px solid rgba(201,151,58,0.3);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+
+  .deload-box h4 { color: var(--gold); font-size: 14px; margin-bottom: 8px; font-weight: 700; }
+  .deload-box p { font-size: 13px; color: #7a6030; line-height: 1.7; }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 36px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 22px;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -24px; top: 6px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .tl-item .tl-time {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .tl-item .tl-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; color: var(--text); }
+  .tl-item .tl-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  /* ─── PCOS SPECIFIC ─── */
+  .pcos-section {
+    background: linear-gradient(135deg, var(--light-purple), #ede3f0);
+    border: 1px solid rgba(139,94,131,0.2);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+
+  .pcos-section h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent3);
+    margin-bottom: 14px;
+  }
+
+  .pcos-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .pcos-point {
+    background: rgba(255,255,255,0.6);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .pcos-point .pp-title { font-weight: 700; font-size: 13px; color: var(--accent3); margin-bottom: 4px; }
+  .pcos-point .pp-desc { font-size: 12px; color: #5a4a5e; line-height: 1.6; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .hero { padding: 40px 20px 48px; }
+    .hero::before { display: none; }
+    .phase-header { grid-template-columns: 1fr; }
+    .phase-meta { flex-direction: row; flex-wrap: wrap; }
+    .week-grid { grid-template-columns: repeat(4, 1fr); }
+    .exercise-table th:nth-child(4),
+    .exercise-table td:nth-child(4) { display: none; }
+    .content { padding: 24px 14px 60px; }
+    .hero h1 { font-size: 56px; }
+  }
+</style>
+</head>
+<body>
+<nav style="background:#2a2218;border-bottom:1px solid #e8e0d0;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:999;">
+  <a href="index.html" style="font-family:Cormorant Garamond,serif;font-size:22px;color:#b85c38;text-decoration:none;font-weight:700;">← Back to Hub</a>
+  <span style="font-family:Courier Prime,monospace;font-size:10px;color:rgba(250,247,242,0.4);letter-spacing:2px;text-transform:uppercase;">Zone Fitness // Transformation Journey</span>
+  <a href="his-program.html" style="font-family:Courier Prime,monospace;font-size:10px;color:rgba(250,247,242,0.5);letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.15);padding:8px 14px;border-radius:6px;">His Program →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Zone Fitness // 2-Year Transformation Program</div>
+    <h1>Lean.<br><em>Strong.</em><br>Thriving.</h1>
+    <p class="hero-sub">A science-based program designed specifically for PCOS, lower back health, and sustainable fat loss. Built around strength training, walking, and hormonal balance — not punishment.</p>
+    <div class="stats-row">
+      <div class="stat-chip"><span class="icon">📏</span><span><span class="label">Height</span><span class="val">168 cm</span></span></div>
+      <div class="stat-chip"><span class="icon">⚖️</span><span><span class="label">Weight</span><span class="val">115 kg</span></span></div>
+      <div class="stat-chip"><span class="icon">📅</span><span><span class="label">Days/Week</span><span class="val">3 Days</span></span></div>
+      <div class="stat-chip"><span class="icon">🎯</span><span><span class="label">Goal</span><span class="val">Fat Loss + Fit</span></span></div>
+      <div class="stat-chip"><span class="icon">💜</span><span><span class="label">Note</span><span class="val">PCOS Adapted</span></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PCOS ALERT -->
+<div class="pcos-alert">
+  <div class="pcos-alert-inner">
+    <div class="pcos-icon">💜</div>
+    <div>
+      <h3>This Program is Built Around Your PCOS</h3>
+      <p>PCOS causes insulin resistance, which makes fat loss harder through diet alone. The good news: <strong>strength training is the single most effective intervention for improving insulin sensitivity</strong> — more than cardio. This program prioritises lifting heavy (safely), keeps cardio moderate to avoid cortisol spikes, and uses walking as a powerful daily fat-loss tool. No crash dieting. No punishing workouts. Hormonal balance first, results follow.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE NAV -->
+<div class="phase-nav">
+  <button class="phase-tab active" onclick="showPhase(0)">
+    <span class="p-num">Phase 01</span>
+    <span>Foundation</span>
+  </button>
+  <button class="phase-tab" onclick="showPhase(1)">
+    <span class="p-num">Phase 02</span>
+    <span>Fat Loss Lift</span>
+  </button>
+  <button class="phase-tab" onclick="showPhase(2)">
+    <span class="p-num">Phase 03</span>
+    <span>Recomposition</span>
+  </button>
+  <button class="phase-tab" onclick="showPhase(3)">
+    <span class="p-num">Phase 04</span>
+    <span>Lean + Strong</span>
+  </button>
+  <button class="phase-tab" onclick="showPhase(4)">
+    <span class="p-num">Guide</span>
+    <span>Nutrition + PCOS</span>
+  </button>
+</div>
+
+<div class="content">
+
+<!-- ══════════════════════════════════════════════
+     PHASE 1: FOUNDATION (Months 1-3)
+══════════════════════════════════════════════ -->
+<div class="phase-content active" id="phase0">
+  <div class="phase-header">
+    <div>
+      <div class="phase-badge p1">Phase 01 // Months 1–3</div>
+      <h2>Foundation</h2>
+      <p>The goal here is to rebuild movement patterns safely, protect the lower back, and build consistency. No hero workouts — just showing up three times a week and walking daily. Research shows even 8,000 steps/day reduces visceral fat significantly in women with PCOS.</p>
+    </div>
+    <div class="phase-meta">
+      <div class="meta-item"><div class="m-label">Sets/Exercise</div><div class="m-val">2–3</div></div>
+      <div class="meta-item"><div class="m-label">Target RPE</div><div class="m-val">5–6</div></div>
+      <div class="meta-item"><div class="m-label">Session Len</div><div class="m-val">45–55 min</div></div>
+    </div>
+  </div>
+
+  <div class="back-safety">
+    <strong>Lower Back Protocol</strong>
+    All exercises in Phase 1 are back-safe. No conventional deadlifts. No heavy spinal loading. Core stability work (bird dogs, dead bugs, glute bridges) is prioritised because a strong core protects the lower back. If anything causes lower back pain — stop, rest, and modify. Never push through back pain.
+  </div>
+
+  <div class="science-box">
+    <strong>The Science</strong>
+    Full-body training 3x/week is optimal for returning lifters with PCOS. Dr. Stacy Sims (exercise physiologist specialising in female hormones) recommends resistance training as the primary modality for PCOS women — it improves insulin sensitivity for up to 24 hours post-session. RPE 5–6 means conversational effort — you could hold a chat. This protects cortisol levels, which directly affect PCOS hormone balance.
+  </div>
+
+  <div class="week-label">Weekly Structure</div>
+  <div class="week-grid">
+    <div class="day-cell train"><span class="d-name">Mon</span><span class="d-type">Full Body A</span></div>
+    <div class="day-cell walk"><span class="d-name">Tue</span><span class="d-type">Walk 30m</span></div>
+    <div class="day-cell train"><span class="d-name">Wed</span><span class="d-type">Full Body B</span></div>
+    <div class="day-cell walk"><span class="d-name">Thu</span><span class="d-type">Walk 30m</span></div>
+    <div class="day-cell train"><span class="d-name">Fri</span><span class="d-type">Full Body C</span></div>
+    <div class="day-cell walk"><span class="d-name">Sat</span><span class="d-type">Walk 45m</span></div>
+    <div class="day-cell rest"><span class="d-name">Sun</span><span class="d-type">Rest</span></div>
+  </div>
+
+  <div class="section-title">Workouts</div>
+  <div class="workout-grid">
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Day A — Full Body (Lower Focus)</h3>
+        <div class="focus-tags"><span class="tag green">Glutes</span><span class="tag terracotta">Quads</span><span class="tag gold">Core Stability</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Glute Bridge (Bodyweight or Barbell)</div><div class="ex-note">Start with bodyweight. The best glute + back-safe lower body exercise.</div><div class="back-safe-note">✓ BACK SAFE — No spinal compression</div></td><td><span class="sets-badge">3</span></td><td>15–20</td><td>75s</td><td><span class="rpe-badge">5</span></td></tr>
+          <tr><td><div class="ex-name">Goblet Squat (Dumbbell)</div><div class="ex-note">Hold DB at chest. Heels slightly elevated if needed. Controlled descent.</div><div class="back-safe-note">✓ BACK SAFE — Weight loads the front, not the spine</div></td><td><span class="sets-badge">3</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">5–6</span></td></tr>
+          <tr><td><div class="ex-name">Leg Press (Machine)</div><div class="ex-note">Mid-height foot placement. Do not lock knees at top. Great back-safe quad/glute movement.</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>90s</td><td><span class="rpe-badge">6</span></td></tr>
+          <tr><td><div class="ex-name">Seated Cable Row</div><div class="ex-note">Sit tall. Pull to belly button. Back stays neutral — don't lean aggressively.</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>75s</td><td><span class="rpe-badge">5–6</span></td></tr>
+          <tr><td><div class="ex-name">Dead Bug (Floor)</div><div class="ex-note">Lower back pressed into floor at all times. Core stability fundamental.</div><div class="back-safe-note">✓ BACK REHAB APPROVED — Builds deep core without spinal load</div></td><td><span class="sets-badge">3</span></td><td>8 each side</td><td>60s</td><td><span class="rpe-badge">5</span></td></tr>
+          <tr><td><div class="ex-name">Seated Leg Curl (Machine)</div><div class="ex-note">Hamstring isolation — no spinal involvement.</div></td><td><span class="sets-badge">2</span></td><td>12–15</td><td>60s</td><td><span class="rpe-badge">5</span></td></tr>
+        </tbody>
+      </table>
+      <div class="cardio-row">🚶 After session: 15 min slow walk on treadmill at 4–5 km/h. This is active recovery, not cardio — it improves blood flow and reduces soreness.</div>
+    </div>
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Day B — Full Body (Upper Focus)</h3>
+        <div class="focus-tags"><span class="tag green">Back</span><span class="tag terracotta">Chest</span><span class="tag purple">Shoulders</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Lat Pulldown (Wide Grip)</div><div class="ex-note">Pull to upper chest. Great for back width without any spinal loading.</div><div class="back-safe-note">✓ BACK SAFE — Seated, no spinal compression</div></td><td><span class="sets-badge">3</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">5–6</span></td></tr>
+          <tr><td><div class="ex-name">Chest Press (Machine)</div><div class="ex-note">Machine preferred in Phase 1 — stable setup, safe for beginners returning.</div></td><td><span class="sets-badge">3</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">5–6</span></td></tr>
+          <tr><td><div class="ex-name">Shoulder Press (Machine or Light DBs)</div><div class="ex-note">Seated. Keep core braced. Don't arch lower back at top.</div><div class="back-safe-note">⚠️ Seated is back-safe. Avoid standing for now.</div></td><td><span class="sets-badge">3</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">5–6</span></td></tr>
+          <tr><td><div class="ex-name">Bird Dog (Floor)</div><div class="ex-note">Opposite arm + leg extended. Hold 2 seconds. Best lower back rehab exercise known.</div><div class="back-safe-note">✓ BACK REHAB GOLD STANDARD — Dr. Stuart McGill protocol</div></td><td><span class="sets-badge">3</span></td><td>10 each side</td><td>60s</td><td><span class="rpe-badge">5</span></td></tr>
+          <tr><td><div class="ex-name">Cable Face Pull</div><div class="ex-note">Rear delt and rotator cuff — builds posture and prevents shoulder rounding.</div></td><td><span class="sets-badge">3</span></td><td>15–20</td><td>60s</td><td><span class="rpe-badge">5</span></td></tr>
+          <tr><td><div class="ex-name">Plank Hold</div><div class="ex-note">Elbows under shoulders. Hips level. Start with 20 seconds if needed.</div></td><td><span class="sets-badge">3</span></td><td>20–40s</td><td>60s</td><td><span class="rpe-badge">5–6</span></td></tr>
+        </tbody>
+      </table>
+      <div class="cardio-row">🚶 After session: 15 min treadmill walk. Try a slight incline (3–5%) — increases calorie burn without impacting the joints.</div>
+    </div>
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Day C — Full Body (Total Body)</h3>
+        <div class="focus-tags"><span class="tag green">Full Body</span><span class="tag gold">Core</span><span class="tag terracotta">Conditioning</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Hip Thrust (Machine or Barbell)</div><div class="ex-note">Loaded glute bridge — the most effective glute exercise. Upper back on bench, drive hips up.</div><div class="back-safe-note">✓ BACK SAFE — Posterior chain without spinal compression</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>90s</td><td><span class="rpe-badge">6</span></td></tr>
+          <tr><td><div class="ex-name">Step-Ups (Low Box, Dumbbells)</div><div class="ex-note">Drive through the heel of the elevated foot. More glute, less knee stress than lunges.</div></td><td><span class="sets-badge">3</span></td><td>10 each</td><td>75s</td><td><span class="rpe-badge">5–6</span></td></tr>
+          <tr><td><div class="ex-name">Chest Supported DB Row</div><div class="ex-note">Chest on incline bench removes all lower back involvement. Ideal for your back issues.</div><div class="back-safe-note">✓ BACK SAFE — Chest supported eliminates spinal strain</div></td><td><span class="sets-badge">3</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">6</span></td></tr>
+          <tr><td><div class="ex-name">Cable Lateral Raise</div><div class="ex-note">Side delts — important for overall body proportions and posture.</div></td><td><span class="sets-badge">3</span></td><td>15–20</td><td>60s</td><td><span class="rpe-badge">5</span></td></tr>
+          <tr><td><div class="ex-name">Glute Kickback (Cable or Machine)</div><div class="ex-note">Hip extension — targets glute max. One of the best isolation moves for glutes.</div></td><td><span class="sets-badge">3</span></td><td>15 each</td><td>60s</td><td><span class="rpe-badge">5–6</span></td></tr>
+          <tr><td><div class="ex-name">Pallof Press (Cable)</div><div class="ex-note">Anti-rotation core work. Trains the core to stabilise, not flex — back-safe core training.</div><div class="back-safe-note">✓ BACK SAFE — No spinal flexion</div></td><td><span class="sets-badge">3</span></td><td>12 each side</td><td>60s</td><td><span class="rpe-badge">5</span></td></tr>
+        </tbody>
+      </table>
+      <div class="cardio-row">🚶 After session: 20 min incline walk (5–8% grade, 4.5–5 km/h). This is the PCOS fat-burning sweet spot — low cortisol, high fat oxidation.</div>
+    </div>
+  </div>
+
+  <div class="deload-box">
+    <h4>📉 Week 12 — Full Deload</h4>
+    <p>Reduce all weights by 40–50%, same exercises and reps. Also reduce walks to 20 minutes. Your body uses this week to reset hormones, reduce inflammation, and consolidate fat loss. For women with PCOS this is especially important — chronic training stress worsens cortisol and androgens.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-time">Weeks 1–4</div><div class="tl-title">Habit Building</div><div class="tl-desc">Focus entirely on showing up. Don't track weight on a scale — it fluctuates with PCOS hormones. Take waist and hip measurements instead every 4 weeks.</div></div>
+    <div class="tl-item"><div class="tl-time">Weeks 5–8</div><div class="tl-title">First Load Increases</div><div class="tl-desc">Add small loads to leg press, lat pulldown, chest press. Core exercises get longer holds. Walking pace increases slightly.</div></div>
+    <div class="tl-item"><div class="tl-time">Weeks 9–11</div><div class="tl-title">Volume Increase</div><div class="tl-desc">Move from 2 to 3 sets per exercise. Incline walk duration goes to 20 min post-session. Energy levels improve noticeably here.</div></div>
+    <div class="tl-item"><div class="tl-time">Week 12</div><div class="tl-title">Deload + Assess</div><div class="tl-desc">Take measurements. Note how your energy, mood and sleep have changed — these are often the first signs of hormonal improvement with PCOS.</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PHASE 2: FAT LOSS LIFT (Months 4-6)
+══════════════════════════════════════════════ -->
+<div class="phase-content" id="phase1">
+  <div class="phase-header">
+    <div>
+      <div class="phase-badge p2">Phase 02 // Months 4–6</div>
+      <h2>Fat Loss Lift</h2>
+      <p>Volume increases, intensity increases, and the program shifts to an Upper/Lower split. Cardio becomes more structured. By now your body is insulin-sensitised from Phase 1 — fat loss accelerates here. Introduce Romanian Deadlifts with careful technique now that back stability has improved.</p>
+    </div>
+    <div class="phase-meta">
+      <div class="meta-item"><div class="m-label">Sets/Exercise</div><div class="m-val">3–4</div></div>
+      <div class="meta-item"><div class="m-label">Target RPE</div><div class="m-val">6–7</div></div>
+      <div class="meta-item"><div class="m-label">Session Len</div><div class="m-val">55–65 min</div></div>
+    </div>
+  </div>
+
+  <div class="science-box">
+    <strong>The Science</strong>
+    Research by Huber et al. confirms that higher-volume resistance training (3–4 sets per exercise) combined with a modest calorie deficit produces greater fat loss than cardio alone in women with PCOS — and crucially, it preserves muscle mass. Preserving muscle is what keeps your metabolism elevated long-term. Zone 2 walking remains the primary cardio tool because it doesn't spike cortisol.
+  </div>
+
+  <div class="week-label">Weekly Structure</div>
+  <div class="week-grid">
+    <div class="day-cell train"><span class="d-name">Mon</span><span class="d-type">Lower A</span></div>
+    <div class="day-cell walk"><span class="d-name">Tue</span><span class="d-type">Walk 40m</span></div>
+    <div class="day-cell train"><span class="d-name">Wed</span><span class="d-type">Upper A</span></div>
+    <div class="day-cell walk"><span class="d-name">Thu</span><span class="d-type">Walk 40m</span></div>
+    <div class="day-cell train"><span class="d-name">Fri</span><span class="d-type">Lower B</span></div>
+    <div class="day-cell walk"><span class="d-name">Sat</span><span class="d-type">Walk 60m</span></div>
+    <div class="day-cell rest"><span class="d-name">Sun</span><span class="d-type">Rest</span></div>
+  </div>
+
+  <div class="section-title">Workouts</div>
+  <div class="workout-grid">
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Lower A — Quad + Glute</h3>
+        <div class="focus-tags"><span class="tag green">Glutes</span><span class="tag terracotta">Quads</span><span class="tag gold">Core</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Barbell Hip Thrust</div><div class="ex-note">Progressive overload focus. Add weight every 1–2 weeks. Most important glute exercise.</div></td><td><span class="sets-badge">4</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Goblet Squat (Heavier DB)</div><div class="ex-note">Gradually increase DB weight from Phase 1.</div></td><td><span class="sets-badge">4</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Romanian Deadlift (Light DBs)</div><div class="ex-note">Hinge at hips, soft knees, feel the hamstring stretch. Keep back flat. Start very light.</div><div class="back-safe-note">⚠️ Introduced now — start at 8–10kg DBs, prioritise form over weight</div></td><td><span class="sets-badge">3</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">6–7</span></td></tr>
+          <tr><td><div class="ex-name">Leg Press (Heavier)</div><div class="ex-note">Increase load progressively from Phase 1.</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>90s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Abductor Machine</div><div class="ex-note">Outer thigh and hip health. Excellent for PCOS hip/waist ratio improvement.</div></td><td><span class="sets-badge">3</span></td><td>15–20</td><td>60s</td><td><span class="rpe-badge">6</span></td></tr>
+          <tr><td><div class="ex-name">Dead Bug (Weighted — Light DB)</div><div class="ex-note">Add a small dumbbell to arms for progression.</div></td><td><span class="sets-badge">3</span></td><td>8 each side</td><td>60s</td><td><span class="rpe-badge">6</span></td></tr>
+        </tbody>
+      </table>
+      <div class="cardio-row">🚶 Post-session: 20 min incline treadmill walk (8–10% grade, 5 km/h). This burns significant calories at low cortisol cost.</div>
+    </div>
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Upper A — Push + Pull</h3>
+        <div class="focus-tags"><span class="tag green">Back</span><span class="tag terracotta">Chest</span><span class="tag purple">Shoulders</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Assisted Pull-Up or Lat Pulldown</div><div class="ex-note">If pulldown is easy for 12 reps — try the assisted pull-up machine.</div></td><td><span class="sets-badge">4</span></td><td>8–12</td><td>90s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Incline DB Press</div><div class="ex-note">Move to free weights from the machine. Builds chest and is a confidence milestone.</div></td><td><span class="sets-badge">4</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Seated Cable Row (Underhand)</div><div class="ex-note">Mid-back thickness. Pull to belly, elbows close to sides.</div></td><td><span class="sets-badge">4</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Lateral Raise (Cable or DBs)</div><div class="ex-note">Side deltoid. Important for shoulder shape and upper body balance.</div></td><td><span class="sets-badge">3</span></td><td>15–20</td><td>60s</td><td><span class="rpe-badge">6</span></td></tr>
+          <tr><td><div class="ex-name">Face Pull (Cable, Rope)</div><div class="ex-note">Rear delt + posture. Non-negotiable for desk workers and rounded shoulders.</div></td><td><span class="sets-badge">3</span></td><td>15–20</td><td>60s</td><td><span class="rpe-badge">6</span></td></tr>
+          <tr><td><div class="ex-name">Tricep Pushdown (Cable, Rope)</div><div class="ex-note">Arm toning — triceps are often undertrained in women's programs.</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>60s</td><td><span class="rpe-badge">6</span></td></tr>
+        </tbody>
+      </table>
+      <div class="cardio-row">🚶 Post-session: 15 min treadmill walk OR 15 min light elliptical. Low impact — protect the joints.</div>
+    </div>
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Lower B — Posterior Chain</h3>
+        <div class="focus-tags"><span class="tag green">Hamstrings</span><span class="tag terracotta">Glutes</span><span class="tag gold">Back Health</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Single-Leg Hip Thrust</div><div class="ex-note">One leg version — harder. Forces unilateral glute activation.</div></td><td><span class="sets-badge">3</span></td><td>10 each</td><td>90s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Romanian Deadlift (DB — Heavier)</div><div class="ex-note">Progress weight from Lower A. Posterior chain is the fat-burning engine.</div></td><td><span class="sets-badge">4</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Step-Up (Higher Box, Heavier DBs)</div><div class="ex-note">Progress box height and dumbbell load from Phase 1.</div></td><td><span class="sets-badge">3</span></td><td>10 each</td><td>75s</td><td><span class="rpe-badge">6–7</span></td></tr>
+          <tr><td><div class="ex-name">Leg Curl (Lying Machine)</div><div class="ex-note">Lying curl gives better hamstring ROM than seated — preferred when available.</div></td><td><span class="sets-badge">4</span></td><td>12–15</td><td>75s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Adductor Machine</div><div class="ex-note">Inner thigh. Pairs with abductor work for full hip balance.</div></td><td><span class="sets-badge">3</span></td><td>15–20</td><td>60s</td><td><span class="rpe-badge">6</span></td></tr>
+          <tr><td><div class="ex-name">Bird Dog (Weighted — Ankle Weight)</div><div class="ex-note">Add ankle weights for progression if available at Zone Fitness.</div></td><td><span class="sets-badge">3</span></td><td>10 each side</td><td>60s</td><td><span class="rpe-badge">6</span></td></tr>
+        </tbody>
+      </table>
+      <div class="cardio-row">🚶 Post-session: 20 min incline walk. Try to increase incline to 10–12% this phase. The "incline walk method" is one of the most effective PCOS fat-loss tools available.</div>
+    </div>
+  </div>
+
+  <div class="deload-box">
+    <h4>📉 Deload Every 4th Week from Here On</h4>
+    <p>Week 4, 8, and 12 of every phase are deload weeks. For PCOS specifically — this is essential. Prolonged training stress elevates cortisol and androgens, which can worsen symptoms. Deloads allow the body to re-regulate and convert all the hard work into actual fat loss and hormonal improvement.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PHASE 3: BODY RECOMPOSITION (Months 7-12)
+══════════════════════════════════════════════ -->
+<div class="phase-content" id="phase2">
+  <div class="phase-header">
+    <div>
+      <div class="phase-badge p3">Phase 03 // Months 7–12</div>
+      <h2>Recomposition</h2>
+      <p>The body is now adapted. This phase introduces true progressive overload on compound lifts, moderate HIIT cardio (carefully dosed for PCOS), and a dedicated glute/posterior chain specialisation block. By month 12 the body composition change will be visually significant.</p>
+    </div>
+    <div class="phase-meta">
+      <div class="meta-item"><div class="m-label">Sets/Exercise</div><div class="m-val">3–5</div></div>
+      <div class="meta-item"><div class="m-label">Target RPE</div><div class="m-val">7–8</div></div>
+      <div class="meta-item"><div class="m-label">Session Len</div><div class="m-val">65–75 min</div></div>
+    </div>
+  </div>
+
+  <div class="science-box">
+    <strong>The Science</strong>
+    HIIT is introduced carefully here. For PCOS, research by Patten et al. (2020) shows HIIT improves insulin sensitivity better than MICT (moderate continuous cardio) — BUT only 1–2 sessions/week. More than that raises androgens. Two sessions of Zone 2 walking and one HIIT session is the evidence-based sweet spot for women with PCOS.
+  </div>
+
+  <div class="week-label">Weekly Structure</div>
+  <div class="week-grid">
+    <div class="day-cell train"><span class="d-name">Mon</span><span class="d-type">Lower + Glute</span></div>
+    <div class="day-cell walk"><span class="d-name">Tue</span><span class="d-type">Zone 2 Walk</span></div>
+    <div class="day-cell train"><span class="d-name">Wed</span><span class="d-type">Upper Body</span></div>
+    <div class="day-cell walk"><span class="d-name">Thu</span><span class="d-type">Walk 45m</span></div>
+    <div class="day-cell train"><span class="d-name">Fri</span><span class="d-type">Lower + HIIT</span></div>
+    <div class="day-cell walk"><span class="d-name">Sat</span><span class="d-type">Long Walk 60m</span></div>
+    <div class="day-cell rest"><span class="d-name">Sun</span><span class="d-type">Rest</span></div>
+  </div>
+
+  <div class="section-title">Workouts</div>
+  <div class="workout-grid">
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Lower + Glute Specialisation</h3>
+        <div class="focus-tags"><span class="tag green">Glutes</span><span class="tag terracotta">Posterior Chain</span><span class="tag gold">Progressive Overload</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Barbell Hip Thrust (Heavy)</div><div class="ex-note">Work up to a challenging weight. This is your main strength movement.</div></td><td><span class="sets-badge">5</span></td><td>8–10</td><td>2 min</td><td><span class="rpe-badge">8</span></td></tr>
+          <tr><td><div class="ex-name">Romanian Deadlift (Barbell or Heavy DBs)</div><div class="ex-note">Progress to barbell if form with DBs is solid. Major fat-burning compound movement.</div><div class="back-safe-note">⚠️ Only use barbell if back feels 100%. DB is equally effective.</div></td><td><span class="sets-badge">4</span></td><td>8–10</td><td>2 min</td><td><span class="rpe-badge">7–8</span></td></tr>
+          <tr><td><div class="ex-name">Bulgarian Split Squat (DBs)</div><div class="ex-note">Rear foot elevated on bench. Unilateral — fixes imbalances and burns more calories.</div></td><td><span class="sets-badge">3</span></td><td>10 each</td><td>90s</td><td><span class="rpe-badge">7–8</span></td></tr>
+          <tr><td><div class="ex-name">Cable Kickback (High Load)</div><div class="ex-note">Increase load significantly from Phase 1–2.</div></td><td><span class="sets-badge">4</span></td><td>12 each</td><td>60s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Abductor + Adductor Superset</div><div class="ex-note">Do abductor set immediately into adductor set. Hip health and shape.</div></td><td><span class="sets-badge">3</span></td><td>20 each</td><td>75s</td><td><span class="rpe-badge">6–7</span></td></tr>
+        </tbody>
+      </table>
+      <div class="cardio-row">🚶 Post-session: 20 min incline walk at 12% grade, 5 km/h. Glutes stay activated during the walk — bonus stimulus.</div>
+    </div>
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Upper Body — Strength Focus</h3>
+        <div class="focus-tags"><span class="tag green">Back</span><span class="tag terracotta">Chest + Arms</span><span class="tag purple">Posture</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Assisted Pull-Up (Progress Toward Bodyweight)</div><div class="ex-note">Reduce assistance every 2–3 weeks. A full pull-up is a major milestone — chase it.</div></td><td><span class="sets-badge">4</span></td><td>6–10</td><td>2 min</td><td><span class="rpe-badge">8</span></td></tr>
+          <tr><td><div class="ex-name">DB Bench Press (Flat)</div><div class="ex-note">Move to heavier dumbbells. Push for progressive overload each session.</div></td><td><span class="sets-badge">4</span></td><td>8–10</td><td>90s</td><td><span class="rpe-badge">7–8</span></td></tr>
+          <tr><td><div class="ex-name">Barbell Row or Heavy DB Row</div><div class="ex-note">Hinge forward to 45°, neutral spine. Major back strength lift.</div><div class="back-safe-note">⚠️ Keep back neutral. Don't round. Stop if back fatigues.</div></td><td><span class="sets-badge">4</span></td><td>8–10</td><td>90s</td><td><span class="rpe-badge">7–8</span></td></tr>
+          <tr><td><div class="ex-name">Lateral Raise (Heavier — DBs)</div><div class="ex-note">Increase load from Phase 2. Side delts create the illusion of a smaller waist.</div></td><td><span class="sets-badge">4</span></td><td>12–15</td><td>60s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Bicep Curl (DB or Cable)</div><div class="ex-note">Arm toning — added here for motivation and aesthetics.</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>60s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Overhead Tricep Extension</div><div class="ex-note">Backs of arms — commonly undertrained and very visible.</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>60s</td><td><span class="rpe-badge">7</span></td></tr>
+        </tbody>
+      </table>
+      <div class="cardio-row">🚶 Post-session: 15 min walk. Or 15 min elliptical if knees feel sensitive from the week's lower body work.</div>
+    </div>
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Lower + HIIT Finish</h3>
+        <div class="focus-tags"><span class="tag terracotta">Quads</span><span class="tag green">Hamstrings</span><span class="tag purple">PCOS HIIT</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Leg Press (Heavy — Heels High)</div><div class="ex-note">Heels high on the platform = more quad activation. Track progressive load.</div></td><td><span class="sets-badge">4</span></td><td>8–12</td><td>2 min</td><td><span class="rpe-badge">8</span></td></tr>
+          <tr><td><div class="ex-name">Leg Curl (Lying, Heavy)</div><div class="ex-note">Both legs for strength sets, then a drop set at the end for extra stimulus.</div></td><td><span class="sets-badge">4</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">7–8</span></td></tr>
+          <tr><td><div class="ex-name">Walking Lunge (DBs)</div><div class="ex-note">Down the gym floor and back. High calorie burn, great unilateral training.</div></td><td><span class="sets-badge">3</span></td><td>12 each</td><td>75s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Standing Calf Raise</div><div class="ex-note">Full range of motion — pause at bottom for stretch.</div></td><td><span class="sets-badge">3</span></td><td>20</td><td>45s</td><td><span class="rpe-badge">6</span></td></tr>
+        </tbody>
+      </table>
+      <div class="cardio-row">⚡ After lifting: PCOS-Safe HIIT — Bike or Elliptical. 5 min warm-up → 8 rounds of 30s hard / 90s easy → 5 min cool-down. Total: 24 min. Max 1x per week.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PHASE 4: LEAN + STRONG (Months 13-24)
+══════════════════════════════════════════════ -->
+<div class="phase-content" id="phase3">
+  <div class="phase-header">
+    <div>
+      <div class="phase-badge p4">Phase 04 // Months 13–24</div>
+      <h2>Lean + Strong</h2>
+      <p>The final year. Your foundation is solid, your insulin sensitivity is dramatically improved, and fat loss has a real momentum. This phase pushes strength on the main lifts, periodises between fat loss and maintenance blocks, and targets a lean, athletic physique.</p>
+    </div>
+    <div class="phase-meta">
+      <div class="meta-item"><div class="m-label">Block Length</div><div class="m-val">6 Wks</div></div>
+      <div class="meta-item"><div class="m-label">Target RPE</div><div class="m-val">7–9</div></div>
+      <div class="meta-item"><div class="m-label">Session Len</div><div class="m-val">65–75 min</div></div>
+    </div>
+  </div>
+
+  <div class="science-box">
+    <strong>The Science</strong>
+    By month 13, the focus shifts from "losing weight" to "building a body." Research shows alternating 6-week fat loss blocks (small deficit) with 3-week maintenance blocks prevents metabolic adaptation — the body never fully downregulates. For PCOS, this cyclical approach also prevents the hormonal disruption that comes from prolonged aggressive calorie restriction.
+  </div>
+
+  <div class="week-label">6-Week Block Structure (Alternating)</div>
+  <div class="week-grid">
+    <div class="day-cell train"><span class="d-name">Mon</span><span class="d-type">Glute + Legs</span></div>
+    <div class="day-cell walk"><span class="d-name">Tue</span><span class="d-type">Zone 2 45m</span></div>
+    <div class="day-cell train"><span class="d-name">Wed</span><span class="d-type">Upper Body</span></div>
+    <div class="day-cell walk"><span class="d-name">Thu</span><span class="d-type">Walk 45m</span></div>
+    <div class="day-cell train"><span class="d-name">Fri</span><span class="d-type">Full Body</span></div>
+    <div class="day-cell walk"><span class="d-name">Sat</span><span class="d-type">Hike or 60m Walk</span></div>
+    <div class="day-cell rest"><span class="d-name">Sun</span><span class="d-type">Rest</span></div>
+  </div>
+
+  <div class="section-title">Workouts</div>
+  <div class="workout-grid">
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Glute + Legs — Mon</h3>
+        <div class="focus-tags"><span class="tag green">Glutes Priority</span><span class="tag gold">Strength</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Barbell Hip Thrust (Max Load)</div><div class="ex-note">Track your 8-rep max. Add 2.5kg every 2 weeks minimum.</div></td><td><span class="sets-badge">5</span></td><td>6–10</td><td>2 min</td><td><span class="rpe-badge">8–9</span></td></tr>
+          <tr><td><div class="ex-name">Romanian Deadlift (Heavy)</div><div class="ex-note">Progressive overload every session. This should be a strong lift by now.</div></td><td><span class="sets-badge">4</span></td><td>8–10</td><td>2 min</td><td><span class="rpe-badge">8</span></td></tr>
+          <tr><td><div class="ex-name">Bulgarian Split Squat (Heavy DBs)</div><div class="ex-note">One of the hardest lower body exercises — earns serious results.</div></td><td><span class="sets-badge">4</span></td><td>8–10 each</td><td>90s</td><td><span class="rpe-badge">8</span></td></tr>
+          <tr><td><div class="ex-name">Leg Curl (Drop Set)</div><div class="ex-note">Work to near failure, then drop weight 30% and continue. Maximises hamstring stimulus.</div></td><td><span class="sets-badge">3</span></td><td>10 + failure</td><td>90s</td><td><span class="rpe-badge">8–9</span></td></tr>
+          <tr><td><div class="ex-name">Cable Kickback + Abductor Superset</div><div class="ex-note">Finisher superset. No rest between exercises in each pair.</div></td><td><span class="sets-badge">3</span></td><td>15 each</td><td>75s</td><td><span class="rpe-badge">7</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Upper Body — Wed</h3>
+        <div class="focus-tags"><span class="tag green">Back</span><span class="tag terracotta">Arms + Chest</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Pull-Up (Bodyweight or Weighted)</div><div class="ex-note">Target: first unassisted pull-up by month 15. Track weekly attempts.</div></td><td><span class="sets-badge">4</span></td><td>Max reps</td><td>2 min</td><td><span class="rpe-badge">8–9</span></td></tr>
+          <tr><td><div class="ex-name">DB Bench Press or Barbell Press</div><div class="ex-note">Progress weight aggressively. Chest and tricep strength.</div></td><td><span class="sets-badge">4</span></td><td>6–10</td><td>90s</td><td><span class="rpe-badge">8</span></td></tr>
+          <tr><td><div class="ex-name">Barbell Row (Heavy)</div><div class="ex-note">Main back strength compound. Track your row PR.</div><div class="back-safe-note">⚠️ Neutral spine at all times. Stop if lower back fatigues.</div></td><td><span class="sets-badge">4</span></td><td>6–8</td><td>90s</td><td><span class="rpe-badge">8</span></td></tr>
+          <tr><td><div class="ex-name">Lateral Raise (Heavy DBs or Cable)</div><div class="ex-note">Push load higher than you think. Side delts are stubborn.</div></td><td><span class="sets-badge">4</span></td><td>12–15</td><td>60s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Bicep Curl + Tricep Pushdown Superset</div><div class="ex-note">Arm finisher. 12 curls immediately into 15 pushdowns, no rest between.</div></td><td><span class="sets-badge">3</span></td><td>12+15</td><td>75s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Face Pull (High Reps)</div><div class="ex-note">Rear delt health — never skip this. Prevents shoulder rounding that worsens back pain.</div></td><td><span class="sets-badge">3</span></td><td>20–25</td><td>45s</td><td><span class="rpe-badge">6</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="workout-card">
+      <div class="workout-card-header">
+        <h3>Full Body — Fri</h3>
+        <div class="focus-tags"><span class="tag purple">Total Body</span><span class="tag terracotta">Metabolic</span><span class="tag gold">HIIT Finish</span></div>
+      </div>
+      <table class="exercise-table">
+        <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ex-name">Goblet Squat (Heavier — Tempo)</div><div class="ex-note">3-second descent, 1-second pause at bottom, 1-second up. Slow = more muscle.</div></td><td><span class="sets-badge">4</span></td><td>10–12</td><td>90s</td><td><span class="rpe-badge">8</span></td></tr>
+          <tr><td><div class="ex-name">Chest Supported Row (Max Weight)</div><div class="ex-note">No lower back risk. Go heavy — this should be a strong lift by Year 2.</div></td><td><span class="sets-badge">4</span></td><td>8–10</td><td>90s</td><td><span class="rpe-badge">8</span></td></tr>
+          <tr><td><div class="ex-name">Hip Thrust (Rep Out)</div><div class="ex-note">Moderate weight, push for 20+ reps. Metabolic glute burnout.</div></td><td><span class="sets-badge">3</span></td><td>20+</td><td>75s</td><td><span class="rpe-badge">7</span></td></tr>
+          <tr><td><div class="ex-name">Shoulder Press (Seated, Heavy)</div><div class="ex-note">Push heavier than Phase 3. Track shoulder strength progress.</div></td><td><span class="sets-badge">3</span></td><td>8–10</td><td>90s</td><td><span class="rpe-badge">8</span></td></tr>
+        </tbody>
+      </table>
+      <div class="cardio-row">⚡ HIIT Finish (Bike): 5 min warm-up → 10 rounds 20s all-out / 40s easy → 5 min cool-down. Maximum 1x/week. This format boosts EPOC for 24 hrs post-session.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Endurance Milestones — Phase 4</div>
+  <div class="info-grid">
+    <div class="info-card"><span class="i-icon">🚶</span><div class="i-name">Daily Step Goal</div><div class="i-detail">10,000 steps/day. This alone burns an extra 300–400 calories daily without stressing the body. Use a phone or watch to track.</div></div>
+    <div class="info-card"><span class="i-icon">🏃</span><div class="i-name">5K Walk/Run Goal</div><div class="i-detail">By month 18: complete a 5K without stopping (walk/jog). By month 24: run a 5K. Start run/walk intervals on Saturdays from month 16.</div></div>
+    <div class="info-card"><span class="i-icon">🚴</span><div class="i-name">Zone 2 Base</div><div class="i-detail">60 min Zone 2 (bike or walk) once per week. Feels easy — that's the point. Builds fat-burning engine and heart health.</div></div>
+    <div class="info-card"><span class="i-icon">📏</span><div class="i-name">Measure Progress</div><div class="i-detail">Waist, hips, thighs every 4 weeks. Not just the scale — PCOS causes water retention that masks fat loss. Measurements tell the real story.</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     GUIDE: NUTRITION + PCOS
+══════════════════════════════════════════════ -->
+<div class="phase-content" id="phase4">
+  <div class="phase-header">
+    <div>
+      <div class="phase-badge p4">Support Guide</div>
+      <h2>Nutrition + PCOS</h2>
+      <p>Nutrition for PCOS is different to standard weight loss advice. Insulin resistance is the root issue — so carbohydrate quality, meal timing, and protein intake matter far more than just cutting calories.</p>
+    </div>
+  </div>
+
+  <div class="pcos-section">
+    <h4>💜 The PCOS Nutrition Framework</h4>
+    <div class="pcos-points">
+      <div class="pcos-point"><div class="pp-title">Insulin Resistance</div><div class="pp-desc">The core issue. Carbs spike insulin, which in PCOS is already dysregulated. Choose low-GI carbs always (oats, sweet potato, brown rice, lentils). Avoid white bread, white rice, sugary drinks.</div></div>
+      <div class="pcos-point"><div class="pp-title">Protein Priority</div><div class="pp-desc">Protein does not spike insulin. It blunts hunger, preserves muscle, and keeps you full. Every meal should have a palm-sized protein source — chicken, eggs, Greek yogurt, fish, tofu.</div></div>
+      <div class="pcos-point"><div class="pp-title">Anti-Inflammatory</div><div class="pp-desc">PCOS is an inflammatory condition. Prioritise: berries, leafy greens, fatty fish, olive oil, nuts. Limit: processed foods, vegetable oils, refined sugar, alcohol.</div></div>
+      <div class="pcos-point"><div class="pp-title">No Crash Dieting</div><div class="pp-desc">Severe restriction raises cortisol, increases androgens, and worsens PCOS symptoms. A small, consistent deficit of 300–400 cal/day is the evidence-based approach.</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">Daily Targets</div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="t-label">Calories</div>
+      <div class="t-val">~1,950</div>
+      <div class="t-desc">Estimated maintenance for your stats and activity level is ~2,300 cal. A deficit of 300–400 cal/day produces 0.3–0.5 kg/week fat loss — the sustainable, PCOS-friendly rate.</div>
+    </div>
+    <div class="tip-card">
+      <div class="t-label">Protein</div>
+      <div class="t-val">115–145g</div>
+      <div class="t-desc">1–1.25g per kg of bodyweight. This is higher than most women are told to eat. It preserves muscle, improves satiety, and has no negative effect on PCOS hormones.</div>
+    </div>
+    <div class="tip-card">
+      <div class="t-label">Carbs</div>
+      <div class="t-val">Low-GI Only</div>
+      <div class="t-desc">Don't eliminate carbs — just choose quality ones. Sweet potato, oats, legumes, brown rice, quinoa, whole fruit. Time them around training for best insulin response.</div>
+    </div>
+    <div class="tip-card">
+      <div class="t-label">Water</div>
+      <div class="t-val">3–4 L/day</div>
+      <div class="t-desc">PCOS causes water retention — staying well hydrated actually reduces bloating, not increases it. Drink 500ml before every training session.</div>
+    </div>
+    <div class="tip-card">
+      <div class="t-label">Meal Timing</div>
+      <div class="t-val">Every 3–4 hrs</div>
+      <div class="t-desc">Eating regularly prevents blood sugar crashes that spike cortisol and cravings. Don't skip meals. Eat within 2 hours of waking. Always eat before a workout — fasted training raises cortisol in PCOS.</div>
+    </div>
+    <div class="tip-card">
+      <div class="t-label">Sleep</div>
+      <div class="t-val">7–9 hrs</div>
+      <div class="t-desc">Sleep deprivation significantly worsens insulin resistance and increases androgens in PCOS. Sleep is not optional — it's a core part of this program.</div>
+    </div>
+  </div>
+
+  <div class="section-title">PCOS Supplements (Evidence-Based)</div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="t-label">Inositol (Myo + D-Chiro)</div>
+      <div class="t-val">4g / 100mg</div>
+      <div class="t-desc">The most researched PCOS supplement. Improves insulin sensitivity, restores ovulatory cycles, reduces androgens. A 40:1 ratio of Myo-inositol to D-chiro-inositol is the clinically validated dose. Speak to your doctor first.</div>
+    </div>
+    <div class="tip-card">
+      <div class="t-label">Magnesium Glycinate</div>
+      <div class="t-val">300–400mg</div>
+      <div class="t-desc">Improves insulin sensitivity and reduces cortisol. Many women with PCOS are deficient. Take before bed — also improves sleep quality.</div>
+    </div>
+    <div class="tip-card">
+      <div class="t-label">Vitamin D3 + K2</div>
+      <div class="t-val">2,000 IU D3</div>
+      <div class="t-desc">Vitamin D deficiency is very common in PCOS and worsens insulin resistance. Get levels tested. Take with a fat-containing meal. K2 helps direct the calcium properly.</div>
+    </div>
+    <div class="tip-card">
+      <div class="t-label">Omega-3 (Fish Oil)</div>
+      <div class="t-val">2–3g EPA/DHA</div>
+      <div class="t-desc">Reduces inflammation and androgens in PCOS. High-quality fish oil or algae-based omega-3 if plant-based. One of the most consistent PCOS supplements in research.</div>
+    </div>
+    <div class="tip-card">
+      <div class="t-label">Creatine Monohydrate</div>
+      <div class="t-val">5g/day</div>
+      <div class="t-desc">Safe for women. Improves strength, helps build muscle that improves insulin sensitivity. Does not cause bloating or weight gain beyond initial water retention in muscle.</div>
+    </div>
+    <div class="tip-card">
+      <div class="t-label">Spearmint Tea</div>
+      <div class="t-val">2 cups/day</div>
+      <div class="t-desc">Clinically shown to reduce free testosterone in PCOS. Reduces hirsutism and may improve the androgen-related symptoms. Cheap, accessible, and backed by multiple RCTs.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Key Principles</div>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-time">Principle 01</div><div class="tl-title">Don't Use the Scale as Your Only Metric</div><div class="tl-desc">PCOS causes hormonal water retention. You can lose significant fat and gain muscle while the scale moves slowly. Track waist and hip measurements every 4 weeks. Take monthly photos. Notice how clothes fit.</div></div>
+    <div class="tl-item"><div class="tl-time">Principle 02</div><div class="tl-title">Strength Training is Your Most Powerful Tool</div><div class="tl-desc">More important than cardio for PCOS. Every lifting session improves insulin sensitivity for up to 24 hours. After 6 months of consistent lifting, the metabolic improvement is dramatic.</div></div>
+    <div class="tl-item"><div class="tl-time">Principle 03</div><div class="tl-title">Walk Every Day — Non-Negotiable</div><div class="tl-desc">Daily walking is one of the most underrated fat loss tools for PCOS. It doesn't spike cortisol, it improves insulin sensitivity, and 10,000 steps burns an extra 350–500 calories without the body adapting.</div></div>
+    <div class="tl-item"><div class="tl-time">Principle 04</div><div class="tl-title">Protect Your Lower Back — Always</div><div class="tl-desc">Never push through lower back pain. Build core strength through anti-extension exercises (dead bugs, bird dogs, planks) before heavy compound lifts. Core strength IS lower back protection.</div></div>
+    <div class="tl-item"><div class="tl-time">Principle 05</div><div class="tl-title">Stress Management is Part of the Program</div><div class="tl-desc">Elevated cortisol worsens every PCOS symptom. Find a daily stress reduction habit — walks in nature, breathwork, journalling, 5 min of deep breathing. This is not optional for PCOS recovery.</div></div>
+    <div class="tl-item"><div class="tl-time">Principle 06</div><div class="tl-title">Work With a Doctor if Possible</div><div class="tl-desc">Consider seeing an endocrinologist or gynaecologist who specialises in PCOS. Metformin (a prescription medication) is sometimes used alongside lifestyle changes and can dramatically improve insulin resistance. A registered dietitian with PCOS experience is also invaluable.</div></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+  function showPhase(index) {
+    document.querySelectorAll('.phase-content').forEach((el, i) => {
+      el.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('.phase-tab').forEach((tab, i) => {
+      tab.classList.toggle('active', i === index);
+    });
+  }
+</script>
+</body>
+</html>
