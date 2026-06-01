@@ -270,7 +270,22 @@
   .day-cell.train .d-type { color: var(--accent); }
   .day-cell.cardio { border-color: var(--accent3); background: rgba(53,200,241,0.04); }
   .day-cell.cardio .d-type { color: var(--accent3); }
+  .day-cell.optional { border-color: var(--accent2); background: rgba(241,165,53,0.04); }
+  .day-cell.optional .d-type { color: var(--accent2); }
   .day-cell.rest .d-type { color: var(--muted); opacity: 0.5; }
+
+  /* ATHLETE GUIDANCE */
+  .athlete-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 30px; }
+  .athlete-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .athlete-card.featured { border-color: rgba(200,241,53,0.35); background: rgba(200,241,53,0.035); }
+  .athlete-card.warning { border-color: rgba(241,165,53,0.35); background: rgba(241,165,53,0.035); }
+  .athlete-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; margin-bottom: 8px; }
+  .athlete-card p { font-size: 12px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
+  .athlete-card ul { list-style: none; display: grid; gap: 7px; }
+  .athlete-card li { position: relative; padding-left: 17px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .athlete-card li::before { content: '+'; position: absolute; left: 0; color: var(--accent); font-family: 'Space Mono', monospace; }
+  .athlete-card.warning li::before { content: '!'; color: var(--accent2); }
+  .athlete-card .rule { color: var(--text); font-weight: 600; }
 
   /* ─── WORKOUT CARDS ─── */
   .workout-grid {
@@ -576,15 +591,63 @@
     Full-body training 3x/week is optimal for returning lifters. Dr. Mike Israetel's MEV (Minimum Effective Volume) principle means you start conservative, just enough stimulus to trigger adaptation without destroying your body. RPE 6-7 means you leave 3-4 reps in the tank — critical for injury prevention when returning.
   </div>
 
-  <div class="week-label">Weekly Structure</div>
+  <div class="section-title">Athlete Weekly Structure</div>
+  <div class="science-box">
+    <strong>Soccer And Running Count</strong>
+    A 7 km run, a 7.5 km run, or a 90-minute soccer match is real training load. Aim for three quality gym sessions, not lower-body work on tired legs. If Saturday is a hard match, Sunday becomes recovery and Day C moves to the next suitable day.
+  </div>
   <div class="week-grid">
-    <div class="day-cell train"><span class="d-name">Mon</span><span class="d-type">Full Body A</span></div>
-    <div class="day-cell rest"><span class="d-name">Tue</span><span class="d-type">Rest</span></div>
-    <div class="day-cell train"><span class="d-name">Wed</span><span class="d-type">Full Body B</span></div>
-    <div class="day-cell rest"><span class="d-name">Thu</span><span class="d-type">Rest</span></div>
-    <div class="day-cell train"><span class="d-name">Fri</span><span class="d-type">Full Body C</span></div>
-    <div class="day-cell rest"><span class="d-name">Sat</span><span class="d-type">Rest</span></div>
-    <div class="day-cell rest"><span class="d-name">Sun</span><span class="d-type">Rest</span></div>
+    <div class="day-cell train"><span class="d-name">Mon</span><span class="d-type">Gym Day A</span></div>
+    <div class="day-cell rest"><span class="d-name">Tue</span><span class="d-type">Mobility + Walk</span></div>
+    <div class="day-cell train"><span class="d-name">Wed</span><span class="d-type">Gym Day B</span></div>
+    <div class="day-cell cardio"><span class="d-name">Thu</span><span class="d-type">Easy Run / Skills</span></div>
+    <div class="day-cell rest"><span class="d-name">Fri</span><span class="d-type">Rest / Mobility</span></div>
+    <div class="day-cell cardio"><span class="d-name">Sat</span><span class="d-type">Soccer / Speed</span></div>
+    <div class="day-cell optional"><span class="d-name">Sun</span><span class="d-type">Day C If Fresh</span></div>
+  </div>
+
+  <div class="athlete-grid">
+    <div class="athlete-card featured">
+      <h3>Recovery Mode</h3>
+      <p>Use this after a hard match or run when the whole body is extremely sore. Take 24 to 48 hours before hard training.</p>
+      <ul>
+        <li>No hard running, lower-body lifting, or plyometrics while very sore.</li>
+        <li>Use light walking and gentle mobility to restore movement.</li>
+        <li>Prioritise hydration, protein, carbs, and a full night's sleep.</li>
+        <li class="rule">Stop training for sharp pain, swelling, limping, dizziness, chest pain, or unusual shortness of breath.</li>
+      </ul>
+    </div>
+    <div class="athlete-card">
+      <h3>Mobility Primer</h3>
+      <p>Complete this checklist before every gym session. Keep each movement smooth and pain-free.</p>
+      <ul>
+        <li>Ankle rocks - 8 each side</li><li>90/90 hip switches - 8 total</li><li>Adductor rockbacks - 8 each side</li>
+        <li>World's greatest stretch - 4 each side</li><li>Glute bridges - 12 reps</li><li>Slow bodyweight squats - 10 reps</li>
+      </ul>
+    </div>
+    <div class="athlete-card">
+      <h3>Plyometric Progression</h3>
+      <p>Start from week 3 only when soreness is under control. Do plyos before lifting, keep volume low, and stop before quality drops.</p>
+      <ul>
+        <li>Pogo jumps - 2 x 15</li><li>Snap-down landings - 2 x 5</li><li>Broad jumps - 2 x 3</li>
+        <li>Lateral bounds - 2 x 4 each side</li><li>10 m accelerations - 3 quality reps</li><li class="rule">Skip the entire block if your legs are sore.</li>
+      </ul>
+    </div>
+    <div class="athlete-card warning">
+      <h3>Soccer Load Rules</h3>
+      <p>Protect your useful training sessions. More fatigue is not automatically more progress.</p>
+      <ul>
+        <li>Never do lower-body training the day after a hard soccer match.</li><li>Use Saturday for soccer or speed work, not both at high intensity.</li>
+        <li>Keep Thursday running easy enough to hold a conversation.</li><li>If legs feel heavy, replace speed work with mobility and a walk.</li>
+      </ul>
+    </div>
+    <div class="athlete-card">
+      <h3>Cardio Adjustment</h3>
+      <p>Soccer and running already create substantial lower-body fatigue. Post-lift cardio is now a small optional add-on.</p>
+      <ul>
+        <li>Weeks 1-2: 5 to 10 min easy cooldown only.</li><li>Weeks 3-4: 10 to 15 min Zone 2 only if legs feel fresh.</li><li class="rule">No HIIT early in the programme.</li>
+      </ul>
+    </div>
   </div>
 
   <div class="section-title">Workouts</div>
@@ -605,7 +668,7 @@
           <tr><td><div class="ex-name">Dumbbell Bicep Curl</div><div class="ex-note">Supinate at top, full ROM</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>60s</td><td><span class="weight-badge">8kg each</span></td></tr>
           <tr><td><div class="ex-name">Tricep Cable Pushdown</div><div class="ex-note">Lock elbows at sides</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>60s</td><td><span class="weight-badge">20kg</span></td></tr>
           <tr><td><div class="ex-name">Plank Hold</div><div class="ex-note">Core bracing, not just endurance</div></td><td><span class="sets-badge">3</span></td><td>30–45s</td><td>60s</td><td><span class="weight-badge">Bodyweight</span></td></tr>
-          <tr><td colspan="5" style="padding:12px 22px; font-size:12px; color:var(--accent3);">🏃 After lifting: 15 min steady-state cardio — treadmill or elliptical at 60-65% max HR</td></tr>
+          <tr><td colspan="5" style="padding:12px 22px; font-size:12px; color:var(--accent3);">After lifting: Weeks 1-2 use a 5-10 min easy cooldown only. Weeks 3-4 add 10-15 min Zone 2 only if legs feel fresh. No early HIIT.</td></tr>
         </tbody>
       </table>
     </div>
@@ -625,7 +688,7 @@
           <tr><td><div class="ex-name">Overhead Tricep Extension (DB)</div><div class="ex-note">Long head emphasis — key for arm size</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>60s</td><td><span class="weight-badge">8kg</span></td></tr>
           <tr><td><div class="ex-name">Hammer Curl</div><div class="ex-note">Brachialis + brachioradialis hit</div></td><td><span class="sets-badge">3</span></td><td>12–15</td><td>60s</td><td><span class="weight-badge">8kg each</span></td></tr>
           <tr><td><div class="ex-name">Leg Raises (Lying)</div><div class="ex-note">Control the descent</div></td><td><span class="sets-badge">3</span></td><td>10–15</td><td>60s</td><td><span class="weight-badge">Bodyweight</span></td></tr>
-          <tr><td colspan="5" style="padding:12px 22px; font-size:12px; color:var(--accent3);">🏃 After lifting: 15 min steady-state cardio — bike or rower at 60-65% max HR</td></tr>
+          <tr><td colspan="5" style="padding:12px 22px; font-size:12px; color:var(--accent3);">After lifting: Weeks 1-2 use a 5-10 min easy cooldown only. Weeks 3-4 add 10-15 min Zone 2 only if legs feel fresh. No early HIIT.</td></tr>
         </tbody>
       </table>
     </div>
@@ -645,7 +708,7 @@
           <tr><td><div class="ex-name">EZ-Bar Curl</div><div class="ex-note">Easier on wrists, good peak contraction</div></td><td><span class="sets-badge">3</span></td><td>10–12</td><td>60s</td><td><span class="weight-badge">20kg</span></td></tr>
           <tr><td><div class="ex-name">Skull Crushers (EZ-Bar)</div><div class="ex-note">Keep elbows tucked, lower to forehead</div></td><td><span class="sets-badge">3</span></td><td>10–12</td><td>60s</td><td><span class="weight-badge">15kg</span></td></tr>
           <tr><td><div class="ex-name">Cable Crunch</div><div class="ex-note">Crunch at the waist, not the hips</div></td><td><span class="sets-badge">3</span></td><td>15–20</td><td>60s</td><td><span class="weight-badge">20kg</span></td></tr>
-          <tr><td colspan="5" style="padding:12px 22px; font-size:12px; color:var(--accent3);">🏃 After lifting: 15 min — mix it up: 5 min walk, 5 min jog, 5 min walk (intro to intervals)</td></tr>
+          <tr><td colspan="5" style="padding:12px 22px; font-size:12px; color:var(--accent3);">After lifting: easy cooldown only. Skip it if Saturday soccer or speed work left your legs fatigued.</td></tr>
         </tbody>
       </table>
     </div>
@@ -657,9 +720,10 @@
   </div>
 
   <div class="timeline">
-    <div class="tl-item"><div class="tl-time">Week 1–4</div><div class="tl-title">Rediscovery</div><div class="tl-desc">Focus 100% on technique over weight. Pick loads where you could do 5 more reps.</div></div>
+    <div class="tl-item"><div class="tl-time">Week 1–2</div><div class="tl-title">Rediscovery + Recovery</div><div class="tl-desc">Focus 100% on technique over weight. Pick loads where you could do 5 more reps. Use easy cooldowns only and let soreness settle.</div></div>
+    <div class="tl-item"><div class="tl-time">Week 3–4</div><div class="tl-title">Athletic Foundation</div><div class="tl-desc">Add the low-volume plyometric primer before lifting only when legs are fresh. Zone 2 cardio stays optional.</div></div>
     <div class="tl-item"><div class="tl-time">Week 5–8</div><div class="tl-title">Progressive Overload Begins</div><div class="tl-desc">Add 2.5–5kg to compound lifts every 1–2 weeks. Add 1 rep per set before adding weight.</div></div>
-    <div class="tl-item"><div class="tl-time">Week 9–11</div><div class="tl-title">Volume Increase</div><div class="tl-desc">Move from 2 sets to 3 sets per exercise. Cardio creeps up to 18 minutes.</div></div>
+    <div class="tl-item"><div class="tl-time">Week 9–11</div><div class="tl-title">Volume Increase</div><div class="tl-desc">Move from 2 sets to 3 sets per exercise only when soccer and running recovery remain stable.</div></div>
     <div class="tl-item"><div class="tl-time">Week 12</div><div class="tl-title">Deload</div><div class="tl-desc">Reduce intensity. Assess progress — take photos, note lifts. Prep mentally for Phase 2.</div></div>
   </div>
 </div>
